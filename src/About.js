@@ -4,7 +4,7 @@ class About extends Component {
     /* TODO: render information about the developers */
     return (
       <>
-        <p>About us page</p>
+        <p>this is a test from ty</p>
       </>
     );
   }
