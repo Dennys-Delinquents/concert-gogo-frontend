@@ -81,10 +81,13 @@ class Admin extends Component {
                   <td>{user.location}</td>
                   <td>{user.searchHistory}</td>
                   <td>{user.events}</td>
-                  <td>{user.isAdmin}</td>
-                  <UpdateUserForm user = {user}/>
+                  <td>{user.isAdmin ? 'true' : 'false'}</td>
+                  <UpdateUserForm
+                    user={user}
+                    getUsers={this.getUsers}
+                  />
                   <td><Button onClick={() => this.deleteUser(user._id)}>Delete</Button></td>
-                  
+
                 </tr>
 
 
