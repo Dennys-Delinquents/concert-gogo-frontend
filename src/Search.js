@@ -14,6 +14,7 @@ class Search extends React.Component {
     this.state = {
       location: '',
       locationData: [],
+      locationData2: [],
       keyword:'',
       error: false,
       errorMessage: '',
@@ -30,13 +31,15 @@ class Search extends React.Component {
     e.preventDefault();
 
     try {
-      let url = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=${this.state.location}&apikey=${process.env.REACT_APP_CLIENTID}`
+      let url = `${process.env.REACT_APP_SERVER}/events?searchQuery=${this.state.location}`
 
       let locationDataFromAxios = await axios.get(url)
-
+      
+      console.log(locationDataFromAxios);
       this.setState({
         locationData: locationDataFromAxios.data[0],
-        error: false
+        locationData2: locationDataFromAxios.data[1],
+        error: false,
       })
     } catch (error) {
       this.setState({
@@ -45,9 +48,7 @@ class Search extends React.Component {
       })
     }
   }
-
-
-
+  
   render() {
     return (
       <>
@@ -65,7 +66,16 @@ class Search extends React.Component {
         ? <Alert variant="warning">{this.state.errorMessage}</Alert>
         :<Container>
           <ListGroup as='list-group'>
-            <ListGroup.Item>{this.state.locationData.name}</ListGroup.Item>
+            <ListGroup.Item>{this.state.locationData.event}</ListGroup.Item>
+            <ListGroup.Item>{this.state.locationData.url}</ListGroup.Item>
+            <ListGroup.Item>{this.state.locationData.image}</ListGroup.Item>
+            <ListGroup.Item>{this.state.locationData.dateTime}</ListGroup.Item>
+          </ListGroup>
+          <ListGroup as='list-group'>
+            <ListGroup.Item>{this.state.locationData2.event}</ListGroup.Item>
+            <ListGroup.Item>{this.state.locationData2.url}</ListGroup.Item>
+            <ListGroup.Item>{this.state.locationData2.image}</ListGroup.Item>
+            <ListGroup.Item>{this.state.locationData2.dateTime}</ListGroup.Item>
           </ListGroup>
         </Container>
       }
