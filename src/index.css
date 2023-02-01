@@ -17,6 +17,12 @@ code {
   margin-left: 50px;
 }
 
+.eventImage img {
+  min-height:30%;
+  max-height:30%;
+  min-width:30%;
+  max-width:30%;
+
 .carousel {
   align-content: center;
   background-image: url("./images/aditya-chinchure-ZhQCZjr9fHo-unsplash1.jpg");
