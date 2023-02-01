@@ -50,7 +50,7 @@ class Profile extends React.Component {
     await this.getOneUser(this.props.auth0User.email);
     console.log(this.state.users);
 
-    // Create udpated user
+    // Create updated user
     let userToUpdate = {
       name: event.target.name.value,
       email: event.target.email.value,
