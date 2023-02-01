@@ -10,3 +10,8 @@ class Home extends Component {
   }
 }
 export default Home;
+
+// todo: Change ALL the font colors
+// todo: Fix Background Image Formatting (Make images wrap)
+// todo: Fix Navbar positioning
+// todo: Make URLs active links after Search
