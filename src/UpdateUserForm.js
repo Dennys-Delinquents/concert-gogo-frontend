@@ -14,11 +14,12 @@ class UpdateUserForm extends React.Component {
   updateUser = async (event) => {
     event.preventDefault();
 
-    // Create udpated user
+    // Create updated user
     let userToUpdate = {
       name: event.target.name.value,
       email: event.target.email.value,
       location: event.target.location.value,
+      searchHistory: this.props.user.searchHistory,
       isAdmin: event.target.isAdmin.value,
       _id: this.props.user._id,
       __v: this.props.user.__v
@@ -72,6 +73,7 @@ class UpdateUserForm extends React.Component {
               <Form.Group controlId="email">
                 <Form.Label>Email: </Form.Label>
                 <Form.Control
+                  readOnly
                   type="text"
                   defaultValue={this.props.user.email} />
               </Form.Group>

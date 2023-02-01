@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(./images/crowdResized.jpg);
 }
 
 code {
@@ -21,4 +22,45 @@ code {
   max-height:30%;
   min-width:30%;
   max-width:30%;
+
+.carousel {
+  align-content: center;
+  background-image: url("./images/aditya-chinchure-ZhQCZjr9fHo-unsplash1.jpg");
+  background-size: cover;
+  height: 1000px;
+  /* background-color: gray; */
+}
+
+.carousel-caption h3 {
+  color: white;
+  text-decoration: underline;
+}
+
+.carousel-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item img {
+  height: 300px;
+  width: min-content;
+}
+
+.profile-caption {
+  align-items: center;
+  margin-bottom: 100px;
+  color: yellow;
+  font-weight: bold;
+}
+
+.profile-caption h3 {
+  text-decoration: underline;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.profile-caption p {
+  text-align: center;
+  font-size: 2vw;
 }
