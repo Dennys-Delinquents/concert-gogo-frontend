@@ -6,8 +6,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -15,30 +13,27 @@ class Search extends React.Component {
       location: '',
       locationData: [],
       locationData2: [],
-      keyword:'',
+      keyword: '',
       error: false,
       errorMessage: '',
+      eventData: [],
     }
   }
-
   handleInput = (e) => {
     this.setState({
       location: e.target.value
     })
   }
-
-  getLocationData = async (e) => {
+  getEventData = async (e) => {
     e.preventDefault();
-
+    let location = e.target.location.value;
+    let keyword = e.target.keyword.value;
     try {
-      let url = `${process.env.REACT_APP_SERVER}/events?searchQuery=${this.state.location}`
+      let url = `${process.env.REACT_APP_SERVER}/events?location=${location}&keyword=${keyword}`
+      let eventDataFromAxios = await axios.get(url)
 
-      let locationDataFromAxios = await axios.get(url)
-      
-      console.log(locationDataFromAxios);
       this.setState({
-        locationData: locationDataFromAxios.data[0],
-        locationData2: locationDataFromAxios.data[1],
+        eventData: eventDataFromAxios.data,
         error: false,
       })
     } catch (error) {
@@ -48,37 +43,38 @@ class Search extends React.Component {
       })
     }
   }
-  
+
   render() {
     return (
       <>
-      <p>search by city</p>
-      <Form onSubmit={this.getLocationData}>
-        <Form.Group>
-          <Form.Label as='form-label'>Events by City:</Form.Label>
-
-          <Form.Control type='text' placeholder='cityname here. not sure how many ways i can spell this out for you' onInput={this.handleInput}></Form.Control>
-          <Button type='submit'>submit</Button>
-        </Form.Group>
-      </Form>
-      {
-        this.state.error
-        ? <Alert variant="warning">{this.state.errorMessage}</Alert>
-        :<Container>
-          <ListGroup as='list-group'>
-            <ListGroup.Item>{this.state.locationData.event}</ListGroup.Item>
-            <ListGroup.Item>{this.state.locationData.url}</ListGroup.Item>
-            <ListGroup.Item>{this.state.locationData.image}</ListGroup.Item>
-            <ListGroup.Item>{this.state.locationData.dateTime}</ListGroup.Item>
-          </ListGroup>
-          <ListGroup as='list-group'>
-            <ListGroup.Item>{this.state.locationData2.event}</ListGroup.Item>
-            <ListGroup.Item>{this.state.locationData2.url}</ListGroup.Item>
-            <ListGroup.Item>{this.state.locationData2.image}</ListGroup.Item>
-            <ListGroup.Item>{this.state.locationData2.dateTime}</ListGroup.Item>
-          </ListGroup>
-        </Container>
-      }
+        <Form onSubmit={this.getEventData}>
+          <Form.Group controlId="location">
+            <Form.Label as='form-label'>Events by State:</Form.Label>
+            <Form.Control type='text' placeholder='Location'></Form.Control>
+          </Form.Group>
+          <Form.Group controlId="keyword">
+            <Form.Label as='form-label'>Events by keyword:</Form.Label>
+            <Form.Control type='text' placeholder='Keyword'></Form.Control>
+          </Form.Group>
+          <Button type='submit'>SUBMIT</Button>
+        </Form>
+        {
+          this.state.error
+            ? <Alert variant="warning">{this.state.errorMessage}</Alert>
+            : <Container>
+              {this.state.eventData.map((singleEvent) => {
+                return (
+                  <ListGroup as='list-group'>
+                    <ListGroup.Item>{singleEvent.event}</ListGroup.Item>
+                    <ListGroup.Item>{singleEvent.url}</ListGroup.Item>
+                    <ListGroup.Item>{singleEvent.dateTime}</ListGroup.Item>
+                    <ListGroup.Item className="eventImage"><img src={singleEvent.image} alt='stuff goes here'></img></ListGroup.Item>
+                  </ListGroup>
+                )
+              }
+              )}
+            </Container>
+        }
       </>
     );
   }

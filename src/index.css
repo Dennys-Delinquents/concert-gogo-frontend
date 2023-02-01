@@ -15,3 +15,10 @@ code {
 .nav-item {
   margin-left: 50px;
 }
+
+.eventImage img {
+  min-height:30%;
+  max-height:30%;
+  min-width:30%;
+  max-width:30%;
+}
