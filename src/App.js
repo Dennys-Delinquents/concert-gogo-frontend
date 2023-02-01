@@ -52,11 +52,10 @@ class App extends React.Component {
             </Route>
             <Route
               exact path="/Profile"
-              element={<Profile />}
+              element={<Profile auth0User={this.props.auth0.isAuthenticated ? this.props.auth0.user : null} />}
             >
             </Route>
           </Routes>
-          <Search/>
           {/* <Footer /> */}
         </Router>
       </>
