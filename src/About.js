@@ -1,6 +1,8 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import john from './images/johnPicture.jpg';
 import mike from './images/mikePicture.jpg';
+import steve from './images/stevePicture.jpg';
 import ty from './images/tyPicture.jpg';
 
 class About extends React.Component {
@@ -11,14 +13,17 @@ class About extends React.Component {
           <Carousel.Item>
             <div className="carousel-bg">
               <img
-                src={mike}
+                src={john}
                 alt="John Chavez - developer"
               />
             </div>
 
             <div className='profile-caption'>
               <h3>John Chavez</h3>
-              <p>John Chavez Bio HERE</p>
+              <p>Favorite band: Metallica</p>
+              <p>Favorite song: All Nightmare Long</p>
+              <p>Instruments: Guitar, piano</p>
+              <p>Fun fact: I used to be able to play 90% of All Nightmare Long on my guitar</p>
             </div>
           </Carousel.Item>
 
@@ -42,14 +47,17 @@ class About extends React.Component {
           <Carousel.Item>
             <div className="carousel-bg">
               <img
-                src={mike}
+                src={steve}
                 alt="Steve Gant - developer"
               />
             </div>
 
             <div className='profile-caption'>
               <h3>Steve Gant</h3>
-              <p>Steve Gant Bio HERE</p>
+              <p>Favorite band: Tool</p>
+              <p>Favorite song: H.</p>
+              <p>Instruments: Guitar, bass, kalimba, unclean vocals</p>
+              <p>Fun Fact: I am really good at singing along in the car as long as the stereo drowns out my singing</p>
             </div>
           </Carousel.Item>
 
