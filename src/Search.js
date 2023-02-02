@@ -110,7 +110,7 @@ class Search extends React.Component {
                     <div className="search-results" key={index}>
                       <img className="eventImage" src={singleEvent.image} alt='stuff goes here' />
                       <div>
-                        <a href={singleEvent.url}>{singleEvent.event}</a>
+                        <a href={singleEvent.url} target='blank'>{singleEvent.event}</a>
                         <p>{singleEvent.dateTime}</p>
                       </div>
                     </div>

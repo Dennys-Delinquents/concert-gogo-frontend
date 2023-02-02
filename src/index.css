@@ -17,6 +17,24 @@ p {
   /* background-color: black; */
 }
 
+.news {
+  max-height: 400px;
+  max-width: 80%;
+  overflow: scroll;
+}
+
+.news-title {
+  font-size: 2vw;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+.news-description {
+  font-size: 1w;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
 #root {
   position: flex;
   align-items: center;
@@ -41,7 +59,6 @@ header {
   margin: auto;
   margin-top: 270px;
   width: 80%;
-  height: 1500px;
 }
 
 .search-box {
@@ -72,9 +89,9 @@ header {
 }
 
 .search-results {
-
-  column-count: 2;
-  flex-wrap: wrap;
+  display: flex;
+  /* column-count: 2; */
+  /* flex-wrap: wrap; */
   margin-bottom: 20px;
   color: white;
   text-shadow: 1px 1px 2px black;

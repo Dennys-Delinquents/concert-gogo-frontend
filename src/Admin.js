@@ -169,10 +169,7 @@ class Admin extends Component {
                       getUsers={this.getUsers}
                     />
                     <td><Button onClick={() => this.deleteUser(user._id)} variant='danger'>Delete</Button></td>
-
                   </tr>
-
-
                 );
               })}
             </tbody>
