@@ -52,7 +52,7 @@ class Profile extends React.Component {
       name: event.target.name.value,
       email: event.target.email.value,
       location: event.target.location.value,
-      isAdmin: event.target.isAdmin.value,
+      isAdmin: this.state.users[0].value,
       _id: this.state.users[0]._id,
       __v: this.state.users[0].__v
     };
@@ -156,14 +156,6 @@ class Profile extends React.Component {
                     type="text"
                     defaultValue={this.state.users[0].location} />
                 </Form.Group>
-
-                <Form.Group controlId="isAdmin">
-                  <Form.Label>Admin Status (true=Admin): </Form.Label>
-                  <Form.Control
-                    type="boolean"
-                    defaultValue={this.state.users[0].isAdmin} />
-                </Form.Group>
-
                 <Button type="submit">Update</Button>
               </Form>
             </Modal.Body>
