@@ -142,6 +142,7 @@ class App extends React.Component {
           </Routes>
           {/* <Footer /> */}
         </Router>
+        {/* <img src="./images/crowdResized.jpg" alt="stuff will go over here"/> */}
       </>
     );
   }
