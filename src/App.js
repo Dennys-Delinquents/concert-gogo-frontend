@@ -1,6 +1,4 @@
 import './App.css';
-import Login from './Login.js';
-import Logout from './Logout.js';
 import Profile from './Profile.js';
 import { withAuth0 } from "@auth0/auth0-react";
 import React from 'react';
@@ -16,6 +14,8 @@ import Search from './Search.js';
 import Admin from './Admin.js';
 import axios from 'axios';
 
+import { Next } from 'react-bootstrap/esm/PageItem';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -26,10 +26,11 @@ class App extends React.Component {
       users: [],
       interval: '',
       currentUser: {},
+
+      isAdmin: false,
     }
   }
 
-  
   componentDidMount() {
     setTimeout(this.userLogin, 1000)
   }
@@ -39,11 +40,26 @@ class App extends React.Component {
 
     if (this.props.auth0.isAuthenticated) {
       testUser = await this.getOneUser(this.props.auth0.user.email);
+
+      this.setState({
+        currentUser: testUser,
+      })
     }
 
     // if invalid user (typeof === string), create a user
     if (typeof (testUser) === 'string') {
       this.createUser();
+
+
+      let url = `${process.env.REACT_APP_SERVER}/MailjetAPI?userEmail=${this.props.auth0.user.email}&userName=${this.props.auth0.user.name}`;
+
+      await axios.get(url);
+
+      testUser = await this.getOneUser(this.props.auth0.user.email);
+
+      this.setState({
+        currentUser: testUser,
+      })
     }
   }
 
@@ -60,6 +76,7 @@ class App extends React.Component {
 
     } catch (error) {
       console.log(error.message);
+      Next(error);
     }
   }
 
@@ -90,24 +107,22 @@ class App extends React.Component {
 
     } catch (error) {
       console.log(error.message);
+
+      Next(error);
     }
   }
 
   render() {
     return (
       <>
-
-
-
-        {/* <h1>{this.state.test}</h1> */}
-
-
         <Router>
-          <Header />
+          <Header
+            isAdmin={this.state.currentUser.isAdmin}
+          />
           <Routes>
             
             <Route
-              exact path="/Home"
+              exact path="/"
               element={<Home />}
             >
             </Route>
@@ -118,16 +133,14 @@ class App extends React.Component {
             </Route>
             <Route
               exact path="/Search"
-              element={<Search />}
+              element={<Search auth0User={this.props.auth0.isAuthenticated ? this.props.auth0.user : null} />}
             >
             </Route>
-
-              <Route
-                exact path="/Admin"
-                element={<Admin />}
-              >
-              </Route>
-
+            <Route
+              exact path="/Admin"
+              element={<Admin />}
+            >
+            </Route>
             <Route
               exact path="/Profile"
               element={<Profile auth0User={this.props.auth0.isAuthenticated ? this.props.auth0.user : null} />}

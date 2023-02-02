@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import React from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
 
-class UpdateUserForm extends Component {
+class UpdateUserForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,28 +11,41 @@ class UpdateUserForm extends Component {
     }
   }
 
-  updateUser = async (id) => {
-    this.setState({ showModal: true });
+  updateUser = async (event) => {
+    event.preventDefault();
+
+    // Create updated user
+    let userToUpdate = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+      location: event.target.location.value,
+      searchHistory: this.props.user.searchHistory,
+      isAdmin: event.target.isAdmin.value,
+      _id: this.props.user._id,
+      __v: this.props.user.__v
+    };
 
     try {
-      // TODO: use axios to send the ID to the server on the path param
-      let url = `${process.env.REACT_APP_SERVER}/users/${id}`;
+      // Configure axios request
+      let config = {
+        method: 'PUT',
+        url: `${process.env.REACT_APP_SERVER}/users/${this.props.user._id}`,
+        data: userToUpdate,
+      }
 
+      // Axios request
+      await axios(config);
 
-      // await axios.put(url);
+      // Get updated users
+      this.props.getUsers();
 
-      // TODO: update state to remove the deleted cat
-      let updatedUsers = this.state.users.filter(user => user._id !== id);
-      console.log(updatedUsers);
+      // Close Modal
+      this.setState({ showModal: false })
 
-      this.setState({
-        users: updatedUsers
-      });
+    } catch (error) {
+      console.log(error.message);
     }
-    catch (error) {
-      console.log(error.message)
-    }
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -43,12 +56,12 @@ class UpdateUserForm extends Component {
     return (
       <>
 
-        <td><Button onClick={() => this.setState({showModal: true})}>Update</Button></td>
+        <td><Button onClick={() => this.setState({ showModal: true })}>Update</Button></td>
 
-        <Modal show={this.state.showModal} onHide={() => this.setState({showModal: false})}>
+        <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
           <Modal.Header closeButton>Update User</Modal.Header>
           <Modal.Body>
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.updateUser}>
               <Form.Group controlId="name">
                 <Form.Label>Name: </Form.Label>
                 <Form.Control
@@ -56,20 +69,29 @@ class UpdateUserForm extends Component {
                   type="text"
                   defaultValue={this.props.user.name} />
               </Form.Group>
-              {/* <Form.Group controlId="description">
-                <Form.Label>Book Description: </Form.Label>
+
+              <Form.Group controlId="email">
+                <Form.Label>Email: </Form.Label>
                 <Form.Control
-                  required
+                  readOnly
                   type="text"
-                  defaultValue={this.props.book.description} />
+                  defaultValue={this.props.user.email} />
               </Form.Group>
-              <Form.Group controlId="status">
-                <Form.Label>Book Availibility: </Form.Label>
+
+              <Form.Group controlId="location">
+                <Form.Label>Location: </Form.Label>
                 <Form.Control
-                  required
                   type="text"
-                  defaultValue={this.props.book.status} />
-              </Form.Group> */}
+                  defaultValue={this.props.user.location} />
+              </Form.Group>
+
+              <Form.Group controlId="isAdmin">
+                <Form.Label>Admin Status (true=Admin): </Form.Label>
+                <Form.Control
+                  type="boolean"
+                  defaultValue={this.props.user.isAdmin} />
+              </Form.Group>
+
               <Button type="submit">Update</Button>
             </Form>
           </Modal.Body>

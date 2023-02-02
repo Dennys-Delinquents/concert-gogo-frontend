@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import UpdateUserForm from './UpdateUserForm';
 import axios from 'axios';
+import './Profile.css';
 
 
 class Admin extends Component {
@@ -178,6 +179,7 @@ class Admin extends Component {
             })}
           </tbody>
         </Table>
+
       </>
 
     );

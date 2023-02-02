@@ -8,27 +8,35 @@ class Header extends React.Component {
   render() {
     return (
       <>
-      <h3 className='box--gradient silver'>CONCERT-GOGO</h3>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        {/* <Navbar.Brand>CONCERT-GOGO</Navbar.Brand> */}
-        <NavItem><Link to="/About" className="nav-link">About</Link></NavItem>
-        <NavItem><Link to="/Search" className="nav-link">Search</Link></NavItem>
-        <NavItem><Link to="/Profile" className="nav-link">Profile</Link></NavItem>
-        <NavItem><Link to="/Admin" className="nav-link">Admin</Link></NavItem>
-
-        {/* {this.props.auth0.isAuthenticated && this.props.auth0.user.isAdmin == 'true'
-          ?
-          <NavItem><Link to="/Admin" className="nav-link">Admin</Link></NavItem>
-          : null
-        } */}
-
-        <NavItem><Link to="/Home" className="nav-link">Home</Link></NavItem>
-
-        {/* PLACEHOLDER: render a navigation link to the about page */}
-      </Navbar>
+        <header>
+          {
+            this.props.auth0.isAuthenticated ?
+              <>
+                <Logout />
+              </>
+              :
+              <Login />
+          }
+          <h3 className='box--gradient silver'>CONCERT-GOGO</h3>
+          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
+            {this.props.auth0.isAuthenticated
+              ? <>
+                <NavItem><Link to="/Search" className="nav-link">Search</Link></NavItem>
+                <NavItem><Link to="/About" className="nav-link">About</Link></NavItem>
+                <NavItem><Link to="/Profile" className="nav-link">Profile</Link></NavItem>
+              </>
+              : null
+            }
+            {this.props.isAdmin
+              ? <NavItem><Link to="/Admin" className="nav-link">Admin</Link></NavItem>
+              : null}
+          </Navbar>
+        </header>
       </>
     );
   }
 }
+
 
 export default withAuth0(Header);

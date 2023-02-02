@@ -80,9 +80,11 @@ class About extends React.Component {
 
 
         </Carousel>
+
       </>
     );
   }
 }
+
 
 export default About;

@@ -5,15 +5,83 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   background-image: url(./images/crowdResized.jpg);
   background-size: fill;
-  /* background-attachment:fixed; */
-  /* background-repeat: no-repeat; */
 }
 
 p {
   color: white;
+  background-color: black;
 }
+
+#root {
+  position: flex;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  min-width: 500px;
+  height: 190px;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: black;
+}
+
+.main-body {
+  margin: auto;
+  margin-top: 190px;
+  width: 80%;
+  height: 80%;
+}
+
+.search-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-box input {
+  border-radius: 0%;
+}
+
+.search-box .btn {
+  border-radius: 0%;
+  min-width: 90px;
+}
+
+#state-field {
+  width: 15%;
+  border-radius: 0px;
+}
+
+#keyword-field {
+  width: 65%;
+}
+
+#submit-button {
+  width: 15%;
+}
+
+.search-results {
+  display: flex;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-weight: bold;
+}
+
+.eventImage {
+  width: 200px;
+}
+
+.search-results a {
+  font-size: 2vw;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -47,7 +115,6 @@ code {
   color: white;
   text-decoration: underline;
 }
-
 .carousel-bg {
   display: flex;
   align-items: center;
@@ -62,24 +129,24 @@ code {
 .profile-caption {
   align-items: center;
   margin-bottom: 100px;
-  color: yellow;
+  color: white;
+  text-shadow: 1px 1px 2px black;
   font-weight: bold;
 }
 
-.profile-caption h3 {
+.profile-caption h4 {
   text-decoration: underline;
-  text-align: center;
-  font-size: 4vw;
-}
-
-.profile-caption p {
   text-align: center;
   font-size: 2vw;
 }
 
+.profile-caption p {
+  text-align: center;
+  font-size: 1vw;
+}
+
 .navbar {
   background-attachment: fixed;
-
 }
 
 Button {
@@ -107,3 +174,4 @@ Button {
 .myButton:active {
   background: #144E75;
 }
+
