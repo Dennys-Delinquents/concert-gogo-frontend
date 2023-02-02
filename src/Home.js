@@ -15,3 +15,4 @@ export default Home;
 // todo: Fix Background Image Formatting (Make images wrap)
 // todo: Fix Navbar positioning
 // todo: Make URLs active links after Search
+// Changes were made
