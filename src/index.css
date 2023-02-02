@@ -181,3 +181,6 @@ Button {
   background: #144E75;
 }
 
+.clear-button {
+  float: right;
+}
