@@ -147,7 +147,7 @@ class Admin extends Component {
                 <th><Button onClick={this.sortLocation} variant='secondary'>Location</Button></th>
                 <th>Search History</th>
                 <th>Events</th>
-                <th><Button onClick={this.sortAdmin} variant='secondary'>Admin Status</Button></th>
+                <th>Admin Status</th>
                 <th>Update</th>
                 <th>Delete</th>
               </tr>
