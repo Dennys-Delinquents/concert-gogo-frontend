@@ -3,22 +3,25 @@ import React from 'react';
 import { Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { withAuth0 } from "@auth0/auth0-react";
+import Login from './Login';
+import Logout from './Logout';
 
 class Header extends React.Component {
   render() {
     return (
       <>
         <header>
-          {
-            this.props.auth0.isAuthenticated ?
-              <>
-                <Logout />
-              </>
-              :
-              <Login />
-          }
+
           <h3 className='box--gradient silver'>CONCERT-GOGO</h3>
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            {
+              this.props.auth0.isAuthenticated ?
+                <>
+                  <Logout />
+                </>
+                :
+                <Login />
+            }
             <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
             {this.props.auth0.isAuthenticated
               ? <>

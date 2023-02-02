@@ -7,12 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-image: url(./images/crowdResized.jpg);
-  background-size: fill;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 p {
   color: white;
-  background-color: black;
+  /* background-color: black; */
 }
 
 #root {
@@ -23,7 +25,7 @@ p {
 header {
   width: 100%;
   min-width: 500px;
-  height: 190px;
+  height: 260px;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -32,9 +34,9 @@ header {
 
 .main-body {
   margin: auto;
-  margin-top: 190px;
+  margin-top: 270px;
   width: 80%;
-  height: 80%;
+  height: 1500px;
 }
 
 .search-box {
@@ -65,11 +67,15 @@ header {
 }
 
 .search-results {
-  display: flex;
+
+  column-count: 2;
+  flex-wrap: wrap;
   margin-bottom: 20px;
   color: white;
   text-shadow: 1px 1px 2px black;
   font-weight: bold;
+  /* width: 40%;
+  max-width: 40%; */
 }
 
 .eventImage {

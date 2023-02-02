@@ -140,46 +140,46 @@ class Admin extends Component {
     /* TODO: render information about the developers */
     return (
       <>
-        <p>Admin page</p>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th><Button onClick={this.sortName} variant='secondary'>Name</Button></th>
-              <th><Button onClick={this.sortEmail} variant='secondary'>Email</Button></th>
-              <th><Button onClick={this.sortLocation} variant='secondary'>Location</Button></th>
-              <th>Search History</th>
-              <th>Events</th>
-              <th><Button onClick={this.sortAdmin} variant='secondary'>Admin Status</Button></th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div className="main-body">
+          <Table bordered className="profile-table">
+            <thead>
+              <tr>
+                <th><Button onClick={this.sortName} variant='secondary'>Name</Button></th>
+                <th><Button onClick={this.sortEmail} variant='secondary'>Email</Button></th>
+                <th><Button onClick={this.sortLocation} variant='secondary'>Location</Button></th>
+                <th>Search History</th>
+                <th>Events</th>
+                <th><Button onClick={this.sortAdmin} variant='secondary'>Admin Status</Button></th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
 
-            {this.state.users.map((user, index) => {
-              return (
+              {this.state.users.map((user, index) => {
+                return (
 
-                <tr key={index}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.location}</td>
-                  <td>{user.searchHistory.toString()}<Button onClick={() => this.clearSearchHistory(user)}>Clear</Button></td>
-                  <td>{user.events}</td>
-                  <td>{user.isAdmin ? 'true' : 'false'}</td>
-                  <UpdateUserForm
-                    user={user}
-                    getUsers={this.getUsers}
-                  />
-                  <td><Button onClick={() => this.deleteUser(user._id)} variant='danger'>Delete</Button></td>
+                  <tr key={index}>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.location}</td>
+                    <td>{user.searchHistory.toString()}<Button onClick={() => this.clearSearchHistory(user)} className='clear-button'>Clear</Button></td>
+                    <td>{user.events}</td>
+                    <td>{user.isAdmin ? 'true' : 'false'}</td>
+                    <UpdateUserForm
+                      user={user}
+                      getUsers={this.getUsers}
+                    />
+                    <td><Button onClick={() => this.deleteUser(user._id)} variant='danger'>Delete</Button></td>
 
-                </tr>
+                  </tr>
 
 
-              );
-            })}
-          </tbody>
-        </Table>
-
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
       </>
 
     );

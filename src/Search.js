@@ -115,7 +115,6 @@ class Search extends React.Component {
                       <div>
                         <a href={singleEvent.url}>{singleEvent.event}</a>
                         <p>{singleEvent.dateTime}</p>
-
                       </div>
                     </div>
                   )

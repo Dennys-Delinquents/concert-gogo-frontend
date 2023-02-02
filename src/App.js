@@ -148,14 +148,6 @@ class App extends React.Component {
             </Route>
           </Routes>
         </Router>
-        {
-          this.props.auth0.isAuthenticated ?
-            <>
-              <Logout />
-            </>
-            :
-            <Login />
-        }
       </>
     );
   }
