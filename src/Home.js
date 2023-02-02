@@ -4,7 +4,10 @@ class Home extends Component {
     /* TODO: render information about the developers */
     return (
       <>
-
+        <div className="main-body">
+          <h1>Welcome to Concert Gogo!</h1>
+          <h1>Search for all the latest music events</h1>
+        </div>
       </>
     );
   }
