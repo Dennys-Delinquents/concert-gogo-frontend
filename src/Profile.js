@@ -26,7 +26,6 @@ class Profile extends React.Component {
     if (!this.props.auth0.isAuthenticated) window.location.href = `${process.env.REACT_APP_DOMAIN}`;
 
     this.getOneUser(this.props.auth0User.email);
-    console.log(this.state.users);
   }
 
   getOneUser = async (email) => {
@@ -39,8 +38,6 @@ class Profile extends React.Component {
         users: [userData.data]
       });
 
-      console.log(userData.data);
-
     } catch (error) {
       console.log(error.message);
     }
@@ -49,7 +46,6 @@ class Profile extends React.Component {
   updateUser = async (event) => {
     event.preventDefault();
     await this.getOneUser(this.props.auth0User.email);
-    console.log(this.state.users);
 
     // Create updated user
     let userToUpdate = {
@@ -60,8 +56,6 @@ class Profile extends React.Component {
       _id: this.state.users[0]._id,
       __v: this.state.users[0].__v
     };
-
-    console.log('User to update: ', userToUpdate);
 
     try {
       // Configure axios request
@@ -88,7 +82,6 @@ class Profile extends React.Component {
   deleteUser = async (id) => {
     try {
       let url = `${process.env.REACT_APP_SERVER}/users/${id}`;
-      console.log(url);
 
       await axios.delete(url);
 

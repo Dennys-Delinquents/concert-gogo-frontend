@@ -66,12 +66,9 @@ class Search extends React.Component {
 
   updateUser = async (searchObj) => {
     let user = await this.getOneUser(this.props.auth0User.email);
-    console.log(user);
 
     // Create updated user
     user.searchHistory.push(searchObj);
-
-    console.log('User to update: ', user);
 
     try {
       // Configure axios request
