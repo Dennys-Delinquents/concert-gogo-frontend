@@ -31,8 +31,6 @@ class Admin extends Component {
         users: userData.data
       });
 
-      console.log(userData.data);
-
     } catch (error) {
       console.log(error.message);
     }
@@ -51,7 +49,7 @@ class Admin extends Component {
       });
     }
     catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   }
 
