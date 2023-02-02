@@ -3,29 +3,43 @@ import React from 'react';
 import { Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { withAuth0 } from "@auth0/auth0-react";
+import Login from './Login.js';
+import Logout from './Logout.js';
 
 class Header extends React.Component {
   render() {
     return (
       <>
-      <h3 className='metal linear'>CONCERT-GOGO</h3>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        {/* <Navbar.Brand>CONCERT-GOGO</Navbar.Brand> */}
-        <NavItem><Link to="/About" className="nav-link">About</Link></NavItem>
-        <NavItem><Link to="/Search" className="nav-link">Search</Link></NavItem>
-        <NavItem><Link to="/Profile" className="nav-link">Profile</Link></NavItem>
-        <NavItem><Link to="/Admin" className="nav-link">Admin</Link></NavItem>
+        <header>
+          {
+            this.props.auth0.isAuthenticated ?
+              <>
+                <Logout />
+              </>
+              :
+              <Login />
+          }
+          <h3 className='metal linear'>CONCERT-GOGO</h3>
+          {/* <Navbar.Brand>CONCERT-GOGO</Navbar.Brand> */}
+          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
 
-        {/* {this.props.auth0.isAuthenticated && this.props.auth0.user.isAdmin == 'true'
-          ?
-          <NavItem><Link to="/Admin" className="nav-link">Admin</Link></NavItem>
-          : null
-        } */}
+            {this.props.auth0.isAuthenticated
+              ? <>
+                <NavItem><Link to="/Search" className="nav-link">Search</Link></NavItem>
+                <NavItem><Link to="/About" className="nav-link">About</Link></NavItem>
+                <NavItem><Link to="/Profile" className="nav-link">Profile</Link></NavItem>
 
-        <NavItem><Link to="/Home" className="nav-link">Home</Link></NavItem>
+              </>
+              : null
+            }
+            {this.props.isAdmin
+              ? <NavItem><Link to="/Admin" className="nav-link">Admin</Link></NavItem>
+              : null}
 
-        {/* PLACEHOLDER: render a navigation link to the about page */}
-      </Navbar>
+
+          </Navbar>
+        </header>
       </>
     );
   }
