@@ -4,7 +4,7 @@ class Home extends Component {
     /* TODO: render information about the developers */
     return (
       <>
-        <p>Home Page</p>
+
       </>
     );
   }
