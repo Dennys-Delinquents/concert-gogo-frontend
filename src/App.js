@@ -14,22 +14,98 @@ import Header from './Header.js';
 import Home from './Home.js';
 import Search from './Search.js';
 import Admin from './Admin.js';
+import axios from 'axios';
+
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      test: 0,
+      loginStatus: false,
+      users: [],
+      interval: '',
+      currentUser: {},
+    }
+  }
+
+  
+  componentDidMount() {
+    setTimeout(this.userLogin, 1000)
+  }
+
+  userLogin = async () => {
+    let testUser = {};
+
+    if (this.props.auth0.isAuthenticated) {
+      testUser = await this.getOneUser(this.props.auth0.user.email);
+    }
+
+    // if invalid user (typeof === string), create a user
+    if (typeof (testUser) === 'string') {
+      this.createUser();
+    }
+  }
+
+  getOneUser = async (email) => {
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/user/${email}`;
+      let userData = await axios.get(url);
+
+      this.setState({
+        users: [userData.data]
+      });
+
+      return userData.data;
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  createUser = async () => {
+    // Create updated user
+    let userToUpdate = {
+      name: this.props.auth0.user.name,
+      email: this.props.auth0.user.email,
+    };
+
+    try {
+      // Configure axios request
+      let config = {
+        method: 'POST',
+        url: `${process.env.REACT_APP_SERVER}/users`,
+        data: userToUpdate,
+      }
+
+      // Axios request
+      await axios(config);
+
+      // Get user
+      let newUser = await this.getOneUser(userToUpdate.email);
+
+      this.setState({
+        currentUser: newUser
+      })
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   render() {
     return (
       <>
-        {
-          this.props.auth0.isAuthenticated ?
-            <>
-              <Logout />
-            </>
-            :
-            <Login />
-        }
+
+
+
+        {/* <h1>{this.state.test}</h1> */}
+
+
         <Router>
           <Header />
           <Routes>
+            
             <Route
               exact path="/Home"
               element={<Home />}
@@ -45,19 +121,28 @@ class App extends React.Component {
               element={<Search />}
             >
             </Route>
-            <Route
-              exact path="/Admin"
-              element={<Admin />}
-            >
-            </Route>
+
+              <Route
+                exact path="/Admin"
+                element={<Admin />}
+              >
+              </Route>
+
             <Route
               exact path="/Profile"
-              element={<Profile />}
+              element={<Profile auth0User={this.props.auth0.isAuthenticated ? this.props.auth0.user : null} />}
             >
             </Route>
           </Routes>
-          {/* <Footer /> */}
         </Router>
+        {
+          this.props.auth0.isAuthenticated ?
+            <>
+              <Logout />
+            </>
+            :
+            <Login />
+        }
       </>
     );
   }

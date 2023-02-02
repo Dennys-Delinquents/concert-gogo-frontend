@@ -5,9 +5,105 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(./images/crowdResized.jpg);
+  background-size: fill;
+  /* background-attachment:fixed; */
+  /* background-repeat: no-repeat; */
+}
+
+p {
+  color: white;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.navbar {
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+}
+
+.nav-item {
+  margin-left: 50px;
+}
+
+.eventImage img {
+  min-height: 30%;
+  max-height: 30%;
+  min-width: 30%;
+  max-width: 30%;
+}
+
+.carousel {
+  align-content: center;
+}
+
+.carousel-caption h3 {
+  color: white;
+  text-decoration: underline;
+}
+
+.carousel-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item img {
+  height: 300px;
+  width: min-content;
+}
+
+.profile-caption {
+  align-items: center;
+  margin-bottom: 100px;
+  color: yellow;
+  font-weight: bold;
+}
+
+.profile-caption h3 {
+  text-decoration: underline;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.profile-caption p {
+  text-align: center;
+  font-size: 2vw;
+}
+
+.navbar {
+  background-attachment: fixed;
+
+}
+
+Button {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  line-height: 15px;
+  padding: 9px;
+  border-radius: 11px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%);
+  box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+  border: 2px solid rgb(28, 110, 164);
+  display: inline-block;
+}
+
+.myButton:hover {
+  background: #1C6EA4;
+}
+
+.myButton:active {
+  background: #144E75;
 }
