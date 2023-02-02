@@ -5,15 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+
   background-image: url(./images/crowdResized.jpg);
-  background-size: 100%;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background-size: fill;
+}
+
+p {
+  color: white;
+  background-color: black;
 }
 
 #root {
-
   position: flex;
   align-items: center;
 }
@@ -86,6 +88,14 @@ code {
     monospace;
 }
 
+.navbar {
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+}
+
 .nav-item {
   margin-left: 50px;
 }
@@ -101,6 +111,10 @@ code {
   align-content: center;
 }
 
+.carousel-caption h3 {
+  color: white;
+  text-decoration: underline;
+}
 .carousel-bg {
   display: flex;
   align-items: center;
@@ -135,4 +149,29 @@ code {
   background-attachment: fixed;
 }
 
-/* Changes were made */
+Button {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  line-height: 15px;
+  padding: 9px;
+  border-radius: 11px;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%);
+  box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px;
+  border: 2px solid rgb(28, 110, 164);
+  display: inline-block;
+}
+
+.myButton:hover {
+  background: #1C6EA4;
+}
+
+.myButton:active {
+  background: #144E75;
+}
+

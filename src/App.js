@@ -13,6 +13,7 @@ import Home from './Home.js';
 import Search from './Search.js';
 import Admin from './Admin.js';
 import axios from 'axios';
+
 import { Next } from 'react-bootstrap/esm/PageItem';
 
 
@@ -25,10 +26,10 @@ class App extends React.Component {
       users: [],
       interval: '',
       currentUser: {},
+
       isAdmin: false,
     }
   }
-
 
   componentDidMount() {
     setTimeout(this.userLogin, 1000)
@@ -39,6 +40,7 @@ class App extends React.Component {
 
     if (this.props.auth0.isAuthenticated) {
       testUser = await this.getOneUser(this.props.auth0.user.email);
+
       this.setState({
         currentUser: testUser,
       })
@@ -47,6 +49,7 @@ class App extends React.Component {
     // if invalid user (typeof === string), create a user
     if (typeof (testUser) === 'string') {
       this.createUser();
+
 
       let url = `${process.env.REACT_APP_SERVER}/MailjetAPI?userEmail=${this.props.auth0.user.email}&userName=${this.props.auth0.user.name}`;
 
@@ -104,6 +107,7 @@ class App extends React.Component {
 
     } catch (error) {
       console.log(error.message);
+
       Next(error);
     }
   }
@@ -111,13 +115,12 @@ class App extends React.Component {
   render() {
     return (
       <>
-
-
         <Router>
           <Header
             isAdmin={this.state.currentUser.isAdmin}
           />
           <Routes>
+            
             <Route
               exact path="/"
               element={<Home />}
@@ -133,22 +136,26 @@ class App extends React.Component {
               element={<Search auth0User={this.props.auth0.isAuthenticated ? this.props.auth0.user : null} />}
             >
             </Route>
-
             <Route
               exact path="/Admin"
               element={<Admin />}
             >
             </Route>
-
             <Route
               exact path="/Profile"
               element={<Profile auth0User={this.props.auth0.isAuthenticated ? this.props.auth0.user : null} />}
             >
             </Route>
           </Routes>
-          {/* <Footer /> */}
         </Router>
-        {/* <img src="./images/crowdResized.jpg" alt="stuff will go over here"/> */}
+        {
+          this.props.auth0.isAuthenticated ?
+            <>
+              <Logout />
+            </>
+            :
+            <Login />
+        }
       </>
     );
   }
