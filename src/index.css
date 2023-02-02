@@ -20,7 +20,7 @@ p {
 .news {
   max-height: 400px;
   max-width: 80%;
-  overflow: scroll;
+
 }
 
 .news-title {
