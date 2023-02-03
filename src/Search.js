@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
